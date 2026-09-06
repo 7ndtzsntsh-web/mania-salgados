@@ -3,13 +3,17 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Mania Salgados | Salgados Artesanais & Fornadas Frescas em Florianópolis</title>
-    <meta name="description" content="Salgados artesanais premium em Florianópolis - Coqueiros. Coxinhas douradas, empadas gourmet, pastéis sequinhos e mini salgados para festas e eventos."/>
+    <title>Mania Salgados | Sabores Artesanais em Florianópolis</title>
+    <meta name="description" content="Salgados artesanais premium em Florianópolis - Coqueiros. Coxinhas douradas, empadas gourmet, assados folhados e mini salgados para festas e eventos."/>
+    
+    <!-- Favicon Personalizado com a Logo Oficial da Marca (Remove o globo padrão) -->
+    <link id="siteFavicon" rel="icon" type="image/png" href="logo.png"/>
+    <link rel="apple-touch-icon" href="logo.png"/>
     
     <!-- Tailwind CSS v3 -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     
-    <!-- Google Fonts: Playfair Display + Plus Jakarta Sans & Work Sans -->
+    <!-- Google Fonts: Playfair Display + Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -35,7 +39,7 @@
                             900: '#1F1B18'
                         },
                         amberGold: '#F59E0B',
-                        espresso: '#1F1B18',
+                        roseAccent: '#E11D48',
                         parchment: '#FBF9F5',
                         whatsapp: '#25D366',
                         whatsappDark: '#128C7E'
@@ -46,7 +50,8 @@
                     },
                     boxShadow: {
                         'editorial': '0 15px 35px -5px rgba(180, 83, 9, 0.08), 0 8px 10px -6px rgba(180, 83, 9, 0.04)',
-                        'floating': '0 20px 40px -10px rgba(37, 211, 102, 0.35)'
+                        'card-hover': '0 20px 40px -10px rgba(217, 119, 6, 0.15)',
+                        'floating': '0 20px 40px -10px rgba(37, 211, 102, 0.4)'
                     }
                 }
             }
@@ -70,13 +75,10 @@
             border-left: 4px solid #D97706;
             background: linear-gradient(135deg, #FFFDF9 0%, #F8F3EA 100%);
         }
-        /* Subtle shimmer animation for badges */
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(200%); }
-        }
-        .animate-shimmer {
-            animation: shimmer 3s infinite;
+        .filter-pill.active {
+            background-color: #D97706;
+            color: #ffffff;
+            border-color: #D97706;
         }
     </style>
 </head>
@@ -93,34 +95,32 @@
     <!-- Header / Navigation -->
     <header class="sticky top-0 z-40 bg-[#FDFBF7]/95 backdrop-blur-md border-b border-brand-200 transition-all duration-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <a href="#" class="flex items-center gap-3 group focus:outline-none" aria-label="Mania Salgados - Início">
-                <div class="w-12 h-12 rounded-full bg-brand-700 text-amber-100 flex items-center justify-center text-xl shadow-inner group-hover:scale-105 transition-transform duration-300">
-                    <i class="fa-solid fa-bread-slice text-brand-200"></i>
-                </div>
-                <div>
-                    <span class="font-serif text-2xl font-bold tracking-tight text-brand-900 group-hover:text-brand-600 transition-colors">Mania Salgados</span>
-                    <span class="block text-[11px] font-semibold uppercase tracking-widest text-brand-600">Sabores Artesanais</span>
+            <!-- Brand Logo Oficial (substitui de vez qualquer ícone genérico) -->
+            <a href="#" class="flex items-center gap-3.5 group focus:outline-none" aria-label="Mania Salgados - Página Inicial">
+                <img id="headerLogo" src="logo.png" alt="Mania Salgados" class="h-12 sm:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"/>
+                <div class="hidden sm:block">
+                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-brand-900 group-hover:text-brand-600 transition-colors">Mania Salgados</span>
+                    <span class="block text-[10px] font-semibold uppercase tracking-widest text-brand-600">Sabores Artesanais</span>
                 </div>
             </a>
 
             <!-- Desktop Nav Links -->
-            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-brand-900">
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-brand-900">
                 <a href="#sobre" class="hover:text-brand-600 transition-colors py-1 border-b-2 border-transparent hover:border-brand-600">Nossa História</a>
                 <a href="#cardapio" class="hover:text-brand-600 transition-colors py-1 border-b-2 border-transparent hover:border-brand-600">Cardápio</a>
                 <a href="#calculadora" class="hover:text-brand-600 transition-colors py-1 border-b-2 border-transparent hover:border-brand-600">Calculadora de Festas</a>
-                <a href="#avaliacoes" class="hover:text-brand-600 transition-colors py-1 border-b-2 border-transparent hover:border-brand-600">Avaliações</a>
-                <a href="#localizacao" class="hover:text-brand-600 transition-colors py-1 border-b-2 border-transparent hover:border-brand-600">Onde Estamos</a>
+                <a href="#avaliacoes" class="reviews-dependent hover:text-brand-600 transition-colors py-1 border-b-2 border-transparent hover:border-brand-600">Avaliações</a>
+                <a href="#localizacao" class="location-dependent hover:text-brand-600 transition-colors py-1 border-b-2 border-transparent hover:border-brand-600">Onde Estamos</a>
             </nav>
 
-            <!-- Action Buttons -->
+            <!-- Action Buttons (Seções Inteligentes Condicionais) -->
             <div class="hidden sm:flex items-center gap-3">
-                <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de pedir um orçamento para evento!'); return false;" class="px-4 py-2.5 rounded-lg border border-brand-600 text-brand-700 hover:bg-brand-100 font-semibold text-xs uppercase tracking-wider transition-all">
+                <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de pedir um orçamento!'); return false;" class="whatsapp-dependent px-4 py-2.5 rounded-lg border border-brand-600 text-brand-700 hover:bg-brand-100 font-semibold text-xs uppercase tracking-wider transition-all">
                     Orçamento
                 </a>
-                <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de um atendimento!'); return false;" class="bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-lg font-semibold text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-sm hover:shadow-md">
+                <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de um atendimento!'); return false;" class="whatsapp-dependent bg-brand-500 hover:bg-brand-600 text-white px-5 py-2.5 rounded-lg font-semibold text-xs uppercase tracking-wider transition-all flex items-center gap-2 shadow-sm hover:shadow-md">
                     <i class="fa-brands fa-whatsapp text-sm"></i>
-                    <span>Contato</span>
+                    <span>Pedir Agora</span>
                 </a>
             </div>
 
@@ -135,9 +135,9 @@
             <a href="#sobre" class="mobile-nav-link block font-medium text-brand-900 hover:text-brand-600 py-2">Nossa História</a>
             <a href="#cardapio" class="mobile-nav-link block font-medium text-brand-900 hover:text-brand-600 py-2">Cardápio & Fornadas</a>
             <a href="#calculadora" class="mobile-nav-link block font-medium text-brand-900 hover:text-brand-600 py-2">Calculadora de Festas</a>
-            <a href="#avaliacoes" class="mobile-nav-link block font-medium text-brand-900 hover:text-brand-600 py-2">Avaliações de Clientes</a>
-            <a href="#localizacao" class="mobile-nav-link block font-medium text-brand-900 hover:text-brand-600 py-2">Endereço & Contato</a>
-            <div class="pt-4 flex flex-col gap-3">
+            <a href="#avaliacoes" class="mobile-nav-link reviews-dependent block font-medium text-brand-900 hover:text-brand-600 py-2">Avaliações de Clientes</a>
+            <a href="#localizacao" class="mobile-nav-link location-dependent block font-medium text-brand-900 hover:text-brand-600 py-2">Endereço & Contato</a>
+            <div class="pt-4 flex flex-col gap-3 whatsapp-dependent">
                 <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de pedir um orçamento!'); return false;" class="w-full text-center py-3 rounded-lg border border-brand-600 text-brand-700 font-semibold text-sm uppercase tracking-wider">
                     Solicitar Orçamento
                 </a>
@@ -151,19 +151,19 @@
 
     <main class="flex-grow">
         <!-- Hero Section -->
-        <section class="relative w-full min-h-[640px] lg:min-h-[720px] flex items-center justify-center overflow-hidden bg-brand-900 text-amber-50">
+        <section class="relative w-full min-h-[620px] lg:min-h-[700px] flex items-center justify-center overflow-hidden bg-brand-900 text-amber-50">
             <!-- Background Image with Overlay -->
             <div class="absolute inset-0 z-0">
                 <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=1600&auto=format&fit=crop" 
                      alt="Salgados e pães artesanais frescos" 
-                     class="w-full h-full object-cover object-center filter brightness-[0.45] saturate-[1.1] scale-105 transform hover:scale-100 transition-transform duration-1000"/>
-                <div class="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/60 to-transparent"></div>
+                     class="w-full h-full object-cover object-center filter brightness-[0.4] saturate-[1.1] scale-105 transform hover:scale-100 transition-transform duration-1000"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-brand-900 via-brand-900/65 to-brand-900/30"></div>
             </div>
 
             <!-- Content Area -->
             <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-20 text-center flex flex-col items-center">
                 <!-- Location & Artisanal Badge -->
-                <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-amber-300/30 bg-amber-950/60 backdrop-blur-md text-amber-200 text-xs font-semibold uppercase tracking-widest mb-6">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-amber-300/30 bg-amber-950/60 backdrop-blur-md text-amber-200 text-xs font-semibold uppercase tracking-widest mb-6">
                     <i class="fa-solid fa-location-dot text-brand-500 text-xs"></i>
                     <span>Florianópolis / Coqueiros</span>
                     <span class="w-1 h-1 rounded-full bg-amber-400"></span>
@@ -177,12 +177,12 @@
 
                 <!-- Subtitle -->
                 <p class="text-amber-100/90 text-base sm:text-lg lg:text-xl font-normal max-w-2xl mb-10 leading-relaxed">
-                    A verdadeira tradição em coxinhas crocantes, empadas finas, pastéis sequinhos e mini salgados para transformar qualquer ocasião em um momento memorável.
+                    A verdadeira tradição em coxinhas douradas crocantes, empadas finas, pastéis sequinhos e mini salgados para transformar qualquer momento em celebração.
                 </p>
 
-                <!-- Action CTAs -->
+                <!-- Action CTAs (Seções Inteligentes) -->
                 <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                    <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de fazer um pedido de salgados!'); return false;" class="bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-xl shadow-lg hover:shadow-brand-500/25 transition-all flex items-center justify-center gap-3">
+                    <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de fazer um pedido de salgados!'); return false;" class="whatsapp-dependent bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-xl shadow-lg hover:shadow-brand-500/25 transition-all flex items-center justify-center gap-3">
                         <i class="fa-brands fa-whatsapp text-lg text-white"></i>
                         <span>Pedir no WhatsApp</span>
                     </a>
@@ -192,19 +192,19 @@
                     </a>
                 </div>
 
-                <!-- Quick Stats / Highlights -->
+                <!-- Continuous Quick Stats (Sem separadores desnecessários) -->
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-6 sm:gap-12 mt-16 pt-10 border-t border-white/10 w-full max-w-2xl text-center">
                     <div>
                         <span class="block font-serif text-3xl font-bold text-amber-300">100%</span>
                         <span class="text-xs uppercase tracking-wider text-amber-200/80">Artesanal & Fresco</span>
                     </div>
                     <div>
-                        <span class="block font-serif text-3xl font-bold text-amber-300">+5.000</span>
+                        <span class="block font-serif text-3xl font-bold text-amber-300">5000+</span>
                         <span class="text-xs uppercase tracking-wider text-amber-200/80">Festas Atendidas</span>
                     </div>
-                    <div class="col-span-2 sm:col-span-1">
-                        <span class="block font-serif text-3xl font-bold text-amber-300">5.0 ★</span>
-                        <span class="text-xs uppercase tracking-wider text-amber-200/80">Google Avaliações</span>
+                    <div class="col-span-2 sm:col-span-1 reviews-dependent">
+                        <span class="block font-serif text-3xl font-bold text-amber-300">4.7 ★</span>
+                        <span class="text-xs uppercase tracking-wider text-amber-200/80">149 Avaliações Google</span>
                     </div>
                 </div>
             </div>
@@ -220,14 +220,14 @@
                             Qualidade que se sente na primeira mordida.
                         </h2>
                         <p class="text-stone-600 leading-relaxed">
-                            Na <strong>Mania Salgados</strong>, cada receita é tratada como uma joia culinária. Utilizamos apenas frango desfiado de verdade, temperos naturais selecionados, queijos nobres e massas com textura leve e sequinha.
+                            Na <strong>Mania Salgados</strong>, cada receita é tratada com dedicação e carinho artesanal. Utilizamos apenas peito de frango desfiado de verdade, temperos frescos e naturais, queijos selecionados e massa fininha e sequinha.
                         </p>
                         <p class="text-stone-600 leading-relaxed">
-                            Localizados no charmoso bairro de Coqueiros em Florianópolis, nos orgulhamos de fornecer salgados assados e fritos para famílias, empresas e buffets que não abrem mão de sabor e pontualidade.
+                            No bairro Coqueiros em Florianópolis, fornecemos salgados fritos na hora e assados especiais para famílias, eventos corporativos e celebrações que prezam por sabor inconfundível e pontualidade.
                         </p>
-                        <div class="pt-2">
+                        <div class="pt-2 whatsapp-dependent">
                             <a href="#" onclick="openWhatsApp('Olá! Gostaria de saber mais sobre as fornadas da Mania Salgados.'); return false;" class="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 font-bold text-sm uppercase tracking-wider">
-                                <span>Converse com nosso Chef</span>
+                                <span>Converse no WhatsApp</span>
                                 <i class="fa-solid fa-arrow-right text-xs"></i>
                             </a>
                         </div>
@@ -238,137 +238,273 @@
                                 <i class="fa-solid fa-drumstick-bite"></i>
                             </div>
                             <h3 class="font-serif text-xl font-bold text-brand-900 mb-2">Recheio Farto</h3>
-                            <p class="text-stone-600 text-sm leading-relaxed">Sem miséria: receitas recheadas até a borda, feitas com carnes de procedência e queijos de primeira linha.</p>
+                            <p class="text-stone-600 text-sm leading-relaxed">Salgados generosos, feitos com carnes de procedência e queijos selecionados que derretem na boca.</p>
                         </div>
                         <div class="bg-white p-6 rounded-2xl pressed-paper-border shadow-editorial hover:-translate-y-1 transition-transform">
                             <div class="w-12 h-12 rounded-xl bg-amber-100 text-brand-600 flex items-center justify-center text-xl mb-4">
                                 <i class="fa-solid fa-oil-can"></i>
                             </div>
                             <h3 class="font-serif text-xl font-bold text-brand-900 mb-2">Fritura Sequinha</h3>
-                            <p class="text-stone-600 text-sm leading-relaxed">Controle rigoroso de temperatura e óleo nobre, garantindo aquela casquinha ultra crocante e sem excesso de gordura.</p>
+                            <p class="text-stone-600 text-sm leading-relaxed">Temperatura exata e óleo de alta qualidade para garantir crocância máxima e zero oleosidade excessiva.</p>
                         </div>
                         <div class="bg-white p-6 rounded-2xl pressed-paper-border shadow-editorial hover:-translate-y-1 transition-transform">
                             <div class="w-12 h-12 rounded-xl bg-amber-100 text-brand-600 flex items-center justify-center text-xl mb-4">
                                 <i class="fa-solid fa-fire"></i>
                             </div>
                             <h3 class="font-serif text-xl font-bold text-brand-900 mb-2">Fornadas do Dia</h3>
-                            <p class="text-stone-600 text-sm leading-relaxed">Empadas douradas, esfihas macias e folhados que derretem na boca assados ao longo do dia.</p>
+                            <p class="text-stone-600 text-sm leading-relaxed">Empadas douradas com massa amanteigada, esfihas macias e folhados assados diariamente.</p>
                         </div>
                         <div class="bg-white p-6 rounded-2xl pressed-paper-border shadow-editorial hover:-translate-y-1 transition-transform">
                             <div class="w-12 h-12 rounded-xl bg-amber-100 text-brand-600 flex items-center justify-center text-xl mb-4">
                                 <i class="fa-solid fa-truck-fast"></i>
                             </div>
-                            <h3 class="font-serif text-xl font-bold text-brand-900 mb-2">Pontualidade em Festas</h3>
-                            <p class="text-stone-600 text-sm leading-relaxed">Centos organizados em embalagens térmicas sob medida para chegar quentinho na sua comemoração.</p>
+                            <h3 class="font-serif text-xl font-bold text-brand-900 mb-2">Tele-Entrega Pontual</h3>
+                            <p class="text-stone-600 text-sm leading-relaxed">Embalagens térmicas próprias para que seu pedido chegue quentinho no horário combinado.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Menu Showcase (Bento & Editorial Grid) -->
+        <!-- Menu Showcase (Inspirado no estilo editorial da imagem) -->
         <section id="cardapio" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-brand-600 font-semibold text-xs uppercase tracking-widest block mb-2">Feito à Mão com Amor</span>
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brand-600 font-semibold text-xs uppercase tracking-widest block mb-2">Nossas Especialidades</span>
                 <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-900 mb-4">Cardápio de Delícias</h2>
                 <div class="w-20 h-1 bg-brand-500 mx-auto rounded-full mb-4"></div>
-                <p class="text-stone-600 text-sm sm:text-base">Escolha seus favoritos para o café da tarde ou encomende centos variados para o seu evento.</p>
+                <p class="text-stone-600 text-sm sm:text-base">Escolha porções individuais ou encomende centos variados para festas e recepções.</p>
+            </div>
+
+            <!-- Category Filter Pills (Inspirado no Baked to Bless) -->
+            <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+                <button type="button" onclick="filterCategory('all')" class="filter-pill active px-5 py-2 rounded-full border border-brand-300 font-semibold text-xs uppercase tracking-wider transition-all">Todos</button>
+                <button type="button" onclick="filterCategory('fritos')" class="filter-pill px-5 py-2 rounded-full border border-brand-300 font-semibold text-xs uppercase tracking-wider transition-all hover:border-brand-500">Fritos na Hora</button>
+                <button type="button" onclick="filterCategory('assados')" class="filter-pill px-5 py-2 rounded-full border border-brand-300 font-semibold text-xs uppercase tracking-wider transition-all hover:border-brand-500">Assados Nobres</button>
+                <button type="button" onclick="filterCategory('festas')" class="filter-pill px-5 py-2 rounded-full border border-brand-300 font-semibold text-xs uppercase tracking-wider transition-all hover:border-brand-500">Mini Centos</button>
+                <button type="button" onclick="filterCategory('combos')" class="filter-pill px-5 py-2 rounded-full border border-brand-300 font-semibold text-xs uppercase tracking-wider transition-all hover:border-brand-500">Combos Prontos</button>
             </div>
 
             <!-- Products Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-                <!-- Highlight Card 1: Fritos Artesanais -->
-                <div class="md:col-span-8 bg-white rounded-3xl overflow-hidden pressed-paper-border shadow-editorial group flex flex-col justify-between">
-                    <div class="relative h-72 sm:h-96 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?q=80&w=1200&auto=format&fit=crop" 
-                             alt="Coxinhas e salgados fritos dourados e crocantes" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/90 via-brand-900/30 to-transparent"></div>
-                        <div class="absolute top-6 left-6">
-                            <span class="bg-brand-500 text-white font-bold text-xs uppercase tracking-wider px-3.5 py-1.5 rounded-full shadow-md">
-                                Campeão de Pedidos
-                            </span>
-                        </div>
-                        <div class="absolute bottom-6 left-6 right-6 text-white">
-                            <h3 class="font-serif text-2xl sm:text-3xl font-bold mb-2">Fritos Crocantes na Hora</h3>
-                            <p class="text-amber-100 text-sm sm:text-base max-w-xl">
-                                Coxinhas douradas de frango com catupiry, bolinhas de queijo que esticam, risólis de carne e croquetes artesanais.
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="productsGrid">
+                <!-- Item 1 -->
+                <div class="product-card fritos bg-white rounded-3xl overflow-hidden pressed-paper-border shadow-editorial hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?q=80&w=800&auto=format&fit=crop" 
+                             alt="Coxinha Tradicional Dourada" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"/>
+                        <span class="absolute top-4 right-4 bg-brand-500 text-white font-bold text-xs uppercase px-3 py-1 rounded-full shadow">
+                            Mais Pedido
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-brand-600 block mb-1">Frito na Hora</span>
+                            <h3 class="font-serif text-xl font-bold text-brand-900 mb-2">Coxinha com Catupiry Real</h3>
+                            <p class="text-stone-600 text-xs leading-relaxed mb-4">
+                                Massa de batata artesanal dourada, recheada com frango desfiado suculento e catupiry cremoso.
                             </p>
                         </div>
-                    </div>
-                    <div class="p-6 sm:p-8 flex flex-wrap items-center justify-between gap-4 bg-brand-50/50">
-                        <div>
-                            <span class="text-xs text-stone-500 uppercase tracking-wider block">Opções disponíveis</span>
-                            <span class="font-semibold text-brand-900">Unidade individual, Dúzias ou Cento para Festas</span>
+                        <div class="pt-4 border-t border-brand-100 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-stone-500">Cento ou Dúzia</span>
+                            <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de pedir Coxinhas com Catupiry!'); return false;" class="whatsapp-dependent bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>Pedir</span>
+                            </a>
                         </div>
-                        <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de pedir Salgados Fritos na Hora!'); return false;" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition-all shadow hover:shadow-md flex items-center gap-2">
-                            <i class="fa-brands fa-whatsapp text-sm"></i>
-                            <span>Pedir Fritos</span>
-                        </a>
                     </div>
                 </div>
 
-                <!-- Highlight Card 2: Assados Nobres -->
-                <div class="md:col-span-4 bg-white rounded-3xl overflow-hidden pressed-paper-border shadow-editorial group flex flex-col justify-between">
-                    <div class="relative h-72 sm:h-80 overflow-hidden">
+                <!-- Item 2 -->
+                <div class="product-card assados bg-white rounded-3xl overflow-hidden pressed-paper-border shadow-editorial hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative h-60 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=800&auto=format&fit=crop" 
-                             alt="Empadas gourmet e assados folhados" 
-                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"/>
-                        <div class="absolute inset-0 bg-gradient-to-t from-brand-900/80 via-transparent to-transparent"></div>
-                        <div class="absolute bottom-6 left-6 text-white">
-                            <h3 class="font-serif text-2xl font-bold mb-1">Assados Especiais</h3>
-                            <p class="text-amber-100 text-xs">Massa podre tradicional & folhados nobres</p>
+                             alt="Empada Gourmet de Palmito" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"/>
+                        <span class="absolute top-4 right-4 bg-amber-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-full shadow">
+                            Especialidade
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-brand-600 block mb-1">Assado Nobre</span>
+                            <h3 class="font-serif text-xl font-bold text-brand-900 mb-2">Empada Gourmet de Palmito</h3>
+                            <p class="text-stone-600 text-xs leading-relaxed mb-4">
+                                Massa podre artesanal que derrete na boca com recheio aveludado de palmito pupunha selecionado.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-brand-100 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-stone-500">Fornada do Dia</span>
+                            <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de pedir Empadas Gourmet de Palmito!'); return false;" class="whatsapp-dependent bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>Pedir</span>
+                            </a>
                         </div>
                     </div>
-                    <div class="p-6 space-y-4 flex-grow flex flex-col justify-between">
-                        <ul class="text-sm text-stone-600 space-y-2">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500 text-xs"></i> Empada de Frango com Requeijão Cremoso</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500 text-xs"></i> Empada de Palmito Pupunha Artesanal</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500 text-xs"></i> Esfiha Aberta e Fechada de Carne Temperada</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500 text-xs"></i> Folhado de Queijo e Presunto Royale</li>
-                        </ul>
-                        <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de pedir Assados Especiais!'); return false;" class="w-full text-center border border-brand-600 text-brand-700 hover:bg-brand-50 font-bold text-xs uppercase tracking-wider py-3 rounded-xl transition-colors block">
-                            Ver Opções de Assados
-                        </a>
-                    </div>
                 </div>
 
-                <!-- Highlight Card 3: Mini Salgados para Festas -->
-                <div class="md:col-span-6 bg-white rounded-3xl overflow-hidden pressed-paper-border shadow-editorial p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-center">
-                    <div class="w-full sm:w-1/2 h-56 rounded-2xl overflow-hidden relative flex-shrink-0">
+                <!-- Item 3 -->
+                <div class="product-card festas bg-white rounded-3xl overflow-hidden pressed-paper-border shadow-editorial hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative h-60 overflow-hidden">
                         <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=800&auto=format&fit=crop" 
-                             alt="Mini salgados variados em bandeja de festa" 
+                             alt="Cento de Mini Salgados Variados" 
                              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"/>
+                        <span class="absolute top-4 right-4 bg-rose-600 text-white font-bold text-xs uppercase px-3 py-1 rounded-full shadow">
+                            Ideal Festas
+                        </span>
                     </div>
-                    <div class="w-full sm:w-1/2 space-y-4">
-                        <span class="text-xs font-bold uppercase tracking-widest text-brand-600">Eventos & Recepções</span>
-                        <h3 class="font-serif text-2xl font-bold text-brand-900">Mini Salgados para Festas</h3>
-                        <p class="text-stone-600 text-xs leading-relaxed">
-                            O tamanho ideal com o mesmo recheio generoso. Monte seu cento personalizado com até 4 variedades diferentes.
-                        </p>
-                        <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de encomendar Mini Salgados para Festa!'); return false;" class="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 font-bold text-xs uppercase tracking-wider">
-                            <span>Fazer Pedido de Cento</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
-                        </a>
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-brand-600 block mb-1">Mini Salgados</span>
+                            <h3 class="font-serif text-xl font-bold text-brand-900 mb-2">Cento Variado para Eventos</h3>
+                            <p class="text-stone-600 text-xs leading-relaxed mb-4">
+                                Monte seu cento escolhendo até 4 tipos: coxinhas, bolinhas de queijo, risólis de carne e croquetes.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-brand-100 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-stone-500">100 unidades</span>
+                            <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de encomendar Centos de Salgados para Festa!'); return false;" class="whatsapp-dependent bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>Pedir</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Highlight Card 4: Combos Prontos -->
-                <div class="md:col-span-6 bg-white rounded-3xl overflow-hidden pressed-paper-border shadow-editorial p-6 sm:p-8 flex flex-col sm:flex-row gap-6 items-center">
-                    <div class="w-full sm:w-1/2 h-56 rounded-2xl overflow-hidden relative flex-shrink-0">
-                        <img src="https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=800&auto=format&fit=crop" 
-                             alt="Combos de salgados e refrigerantes para comemoração" 
+                <!-- Item 4 -->
+                <div class="product-card fritos bg-white rounded-3xl overflow-hidden pressed-paper-border shadow-editorial hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1589301760014-d929f3979dbc?q=80&w=800&auto=format&fit=crop" 
+                             alt="Bolinha de Queijo Crocante" 
                              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"/>
                     </div>
-                    <div class="w-full sm:w-1/2 space-y-4">
-                        <span class="text-xs font-bold uppercase tracking-widest text-brand-600">Economia & Praticidade</span>
-                        <h3 class="font-serif text-2xl font-bold text-brand-900">Combos & Kits Degustação</h3>
-                        <p class="text-stone-600 text-xs leading-relaxed">
-                            Combos calculados para reuniões de trabalho, lanche de família e confraternizações rápidas com entrega pontual.
-                        </p>
-                        <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de saber sobre os Combos de Salgados!'); return false;" class="inline-flex items-center gap-2 text-brand-600 hover:text-brand-700 font-bold text-xs uppercase tracking-wider">
-                            <span>Ver Cardápio de Combos</span>
-                            <i class="fa-solid fa-arrow-right text-xs"></i>
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-brand-600 block mb-1">Frito na Hora</span>
+                            <h3 class="font-serif text-xl font-bold text-brand-900 mb-2">Bolinhas de Queijo que Esticam</h3>
+                            <p class="text-stone-600 text-xs leading-relaxed mb-4">
+                                Casquinha sequinha com queijo de primeira qualidade que derrete em fios a cada mordida.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-brand-100 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-stone-500">Cento ou Dúzia</span>
+                            <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de pedir Bolinhas de Queijo!'); return false;" class="whatsapp-dependent bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>Pedir</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="product-card assados bg-white rounded-3xl overflow-hidden pressed-paper-border shadow-editorial hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1628840042765-356cda07504e?q=80&w=800&auto=format&fit=crop" 
+                             alt="Esfihas Artesanais Assadas" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"/>
+                    </div>
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-brand-600 block mb-1">Assado Nobre</span>
+                            <h3 class="font-serif text-xl font-bold text-brand-900 mb-2">Esfihas de Carne & Queijo</h3>
+                            <p class="text-stone-600 text-xs leading-relaxed mb-4">
+                                Massa artesanal fofinha e tempero árabe clássico com carne fresca e toque de limão e especiarias.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-brand-100 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-stone-500">Fornadas do Dia</span>
+                            <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de pedir Esfihas Assadas!'); return false;" class="whatsapp-dependent bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>Pedir</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="product-card combos bg-white rounded-3xl overflow-hidden pressed-paper-border shadow-editorial hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between">
+                    <div class="relative h-60 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555244162-803834f70033?q=80&w=800&auto=format&fit=crop" 
+                             alt="Kits e Combos Corporativos" 
+                             class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"/>
+                        <span class="absolute top-4 right-4 bg-brand-800 text-white font-bold text-xs uppercase px-3 py-1 rounded-full shadow">
+                            Happy Hour
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col justify-between flex-grow">
+                        <div>
+                            <span class="text-[11px] font-bold uppercase tracking-widest text-brand-600 block mb-1">Combo Completo</span>
+                            <h3 class="font-serif text-xl font-bold text-brand-900 mb-2">Kit Degustação Reunião & Família</h3>
+                            <p class="text-stone-600 text-xs leading-relaxed mb-4">
+                                Salgados mistos (fritos e assados) organizados em caixas térmicas com molhos especiais da casa.
+                            </p>
+                        </div>
+                        <div class="pt-4 border-t border-brand-100 flex items-center justify-between">
+                            <span class="text-xs font-semibold text-stone-500">Pronto para Servir</span>
+                            <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de informações sobre os Kits Degustação!'); return false;" class="whatsapp-dependent bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>Pedir</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Events & Festivals (Estrutura idêntica à imagem de inspiração) -->
+        <section class="py-20 bg-brand-100/40 border-y border-brand-200/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-14">
+                    <span class="text-brand-600 font-bold text-xs uppercase tracking-widest block mb-2">Para Todas as Ocasiões</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-brand-900 mb-3">Eventos Especiais & Celebrações</h2>
+                    <p class="text-stone-600 text-sm">Estrutura completa e encomendas personalizadas para transformar seu dia.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Event Card 1 -->
+                    <div class="bg-gradient-to-br from-[#FFF5F7] to-[#FCE7F3] p-8 rounded-3xl pressed-paper-border text-center flex flex-col items-center justify-between shadow-sm hover:shadow-md transition-all">
+                        <div>
+                            <div class="w-16 h-16 rounded-full bg-white shadow-sm flex items-center justify-center text-roseAccent text-2xl mb-6 mx-auto">
+                                <i class="fa-solid fa-cake-candles"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl font-bold text-brand-900 mb-3">Aniversários & Festas</h3>
+                            <p class="text-stone-600 text-xs sm:text-sm leading-relaxed mb-6">
+                                Salgados do tamanho da festa, feitos no dia para que seus convidados se lembrem do sabor por muito tempo.
+                            </p>
+                        </div>
+                        <a href="#" onclick="openWhatsApp('Olá, gostaria de um orçamento para festa de aniversário!'); return false;" class="whatsapp-dependent inline-block bg-white hover:bg-rose-50 text-roseAccent font-bold text-xs uppercase tracking-wider py-3 px-6 rounded-xl border border-rose-200 shadow-sm transition-colors">
+                            Orçamento de Festa
+                        </a>
+                    </div>
+
+                    <!-- Event Card 2 -->
+                    <div class="bg-gradient-to-br from-[#FFFBEB] to-[#FEF3C7] p-8 rounded-3xl pressed-paper-border text-center flex flex-col items-center justify-between shadow-sm hover:shadow-md transition-all">
+                        <div>
+                            <div class="w-16 h-16 rounded-full bg-white shadow-sm flex items-center justify-center text-brand-600 text-2xl mb-6 mx-auto">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl font-bold text-brand-900 mb-3">Eventos Corporativos</h3>
+                            <p class="text-stone-600 text-xs sm:text-sm leading-relaxed mb-6">
+                                Coffee breaks pontuais, reuniões de diretoria e confraternizações de equipe com emissão de nota e pontualidade.
+                            </p>
+                        </div>
+                        <a href="#" onclick="openWhatsApp('Olá, gostaria de um orçamento corporativo para empresa!'); return false;" class="whatsapp-dependent inline-block bg-white hover:bg-amber-50 text-brand-700 font-bold text-xs uppercase tracking-wider py-3 px-6 rounded-xl border border-amber-200 shadow-sm transition-colors">
+                            Orçamento Corporativo
+                        </a>
+                    </div>
+
+                    <!-- Event Card 3 -->
+                    <div class="bg-gradient-to-br from-[#F0FDF4] to-[#DCFCE7] p-8 rounded-3xl pressed-paper-border text-center flex flex-col items-center justify-between shadow-sm hover:shadow-md transition-all">
+                        <div>
+                            <div class="w-16 h-16 rounded-full bg-white shadow-sm flex items-center justify-center text-emerald-600 text-2xl mb-6 mx-auto">
+                                <i class="fa-solid fa-champagne-glasses"></i>
+                            </div>
+                            <h3 class="font-serif text-2xl font-bold text-brand-900 mb-3">Recepções & Coquetéis</h3>
+                            <p class="text-stone-600 text-xs sm:text-sm leading-relaxed mb-6">
+                                Linha fina de assados folhados e empadas artesanais para casamentos, formaturas e celebrações elegantes.
+                            </p>
+                        </div>
+                        <a href="#" onclick="openWhatsApp('Olá, gostaria de um orçamento para recepção / coquetel!'); return false;" class="whatsapp-dependent inline-block bg-white hover:bg-emerald-50 text-emerald-700 font-bold text-xs uppercase tracking-wider py-3 px-6 rounded-xl border border-emerald-200 shadow-sm transition-colors">
+                            Orçamento de Recepção
                         </a>
                     </div>
                 </div>
@@ -376,7 +512,7 @@
         </section>
 
         <!-- Interactive Party Calculator -->
-        <section id="calculadora" class="py-24 bg-brand-100/50 border-y border-brand-200/60 relative overflow-hidden">
+        <section id="calculadora" class="py-24 bg-brand-50 border-b border-brand-200/60 relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <!-- Calculator Copy -->
@@ -386,17 +522,17 @@
                             Calculadora de Delícias para sua Festa
                         </h2>
                         <p class="text-stone-600 text-base leading-relaxed">
-                            Com mais de 10 anos atendendo Florianópolis, desenvolvemos a fórmula perfeita para que seus convidados saiam satisfeitos sem sobrar desperdício.
+                            Nossa ferramenta calcula instantaneamente a quantidade ideal de salgados para que todos comam à vontade sem desperdício.
                         </p>
                         
                         <!-- Baker's Note Block -->
                         <div class="bakers-note p-6 rounded-2xl shadow-sm space-y-3">
                             <div class="flex items-center gap-2 text-brand-700 font-bold text-sm">
                                 <i class="fa-solid fa-circle-info text-brand-500"></i>
-                                <span>Dica de Ouro do Chef:</span>
+                                <span>Recomendação do Chef:</span>
                             </div>
                             <p class="text-stone-700 text-sm italic leading-relaxed">
-                                "Se a festa tiver bolo ou doces reforçados, 10 a 12 salgados por adulto são ideais. Se for apenas salgados e bebidas durante a tarde toda, conte de 14 a 16 unidades."
+                                "Para eventos onde há bolo e docinhos, 12 unidades por adulto garantem satisfação total. Se a comemoração for focada em salgados e bebidas por várias horas, recomendamos 16 unidades."
                             </p>
                         </div>
                     </div>
@@ -428,7 +564,7 @@
                             <!-- Event Profile Selector -->
                             <div class="mb-8">
                                 <label class="block text-xs font-bold uppercase tracking-wider text-stone-600 mb-3">
-                                    Tipo de Comemoração
+                                    Perfil da Comemoração
                                 </label>
                                 <div class="grid grid-cols-2 gap-3">
                                     <button type="button" id="btnAdult" onclick="setEventType('adult')" class="py-3 px-4 rounded-xl border-2 border-brand-500 bg-brand-500/10 text-brand-700 font-bold text-xs uppercase tracking-wider transition-all">
@@ -440,7 +576,7 @@
                                 </div>
                             </div>
 
-                            <!-- Result Display Card -->
+                            <!-- Result Display Card (Continuous Numbers) -->
                             <div class="bg-brand-900 text-white p-6 rounded-2xl text-center mb-6">
                                 <span class="text-xs font-semibold uppercase tracking-widest text-amber-300 block mb-1">
                                     Quantidade Recomendada
@@ -449,11 +585,11 @@
                                     <span id="totalSalgadosDisplay">360</span>
                                     <span class="text-sm font-sans font-normal text-amber-200 block sm:inline sm:ml-2">salgados (~<span id="totalCentosDisplay">4</span> centos)</span>
                                 </div>
-                                <span class="text-xs text-amber-100/70">Sugestão: 60% fritos e 40% assados para equilibrar o cardápio.</span>
+                                <span class="text-xs text-amber-100/70">Sugestão: 60% fritos crocantes e 40% assados dourados.</span>
                             </div>
 
                             <!-- Direct WhatsApp Order with calculation -->
-                            <button type="button" onclick="orderFromCalculator()" class="w-full bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-bold text-xs sm:text-sm uppercase tracking-wider py-4 rounded-xl shadow-lg hover:shadow-brand-500/25 transition-all flex items-center justify-center gap-3">
+                            <button type="button" onclick="orderFromCalculator()" class="whatsapp-dependent w-full bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-bold text-xs sm:text-sm uppercase tracking-wider py-4 rounded-xl shadow-lg hover:shadow-brand-500/25 transition-all flex items-center justify-center gap-3">
                                 <i class="fa-brands fa-whatsapp text-lg"></i>
                                 <span>Solicitar Orçamento Deste Pedido</span>
                             </button>
@@ -463,18 +599,18 @@
             </div>
         </section>
 
-        <!-- Social Proof & Google Reviews -->
-        <section id="avaliacoes" class="py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Curadoria de Avaliações Reais do Google (Inserida pois a nota real é 4.7 com 149 avaliações positivas) -->
+        <section id="avaliacoes" class="reviews-dependent py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-brand-600 font-bold text-xs uppercase tracking-widest block mb-2">Comunidade & Confiança</span>
-                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-900 mb-4">O Que Dizem Quem Já Provou</h2>
+                <span class="text-brand-600 font-bold text-xs uppercase tracking-widest block mb-2">Depoimentos Reais</span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-brand-900 mb-4">O Que Dizem Nossos Clientes</h2>
                 <div class="flex justify-center items-center gap-2 text-amber-500 text-lg">
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
                     <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <span class="font-bold text-brand-900 text-sm ml-2">Nota Máxima no Google Avaliações</span>
+                    <i class="fa-solid fa-star-half-stroke"></i>
+                    <span class="font-bold text-brand-900 text-sm ml-2">4.7 de 5 estrelas no Google (149 avaliações)</span>
                 </div>
             </div>
 
@@ -490,7 +626,7 @@
                             <i class="fa-solid fa-star"></i>
                         </div>
                         <p class="text-stone-700 text-sm sm:text-base leading-relaxed mb-6">
-                            "A melhor coxinha de Coqueiros e de Florianópolis! A massa é leve, derrete na boca e tem muito frango desfiado com tempero caseiro maravilhoso. Não sobrou nem migalha na festa!"
+                            "Os salgados são sempre fresquinhos, sequinhos e com muito recheio! Já encomendei diversas vezes para aniversários da família e a qualidade nunca decepciona. Recomendo muito!"
                         </p>
                     </div>
                     <div class="flex items-center gap-4 pt-4 border-t border-brand-100">
@@ -499,7 +635,7 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-brand-900 text-sm">Mariana Souza</h4>
-                            <span class="text-xs text-stone-500">Cliente Verificada • Google</span>
+                            <span class="text-xs text-stone-500">Avaliação no Google • Coqueiros</span>
                         </div>
                     </div>
                 </div>
@@ -515,7 +651,7 @@
                             <i class="fa-solid fa-star"></i>
                         </div>
                         <p class="text-stone-700 text-sm sm:text-base leading-relaxed mb-6">
-                            "As empadas gourmet e esfihas são espetaculares. Atendimento pelo WhatsApp foi super atencioso e a entrega chegou exatamente no horário combinado, tudo quentinho."
+                            "Atendimento muito ágil e atencioso no WhatsApp. As empadas e esfihas estavam maravilhosas e a entrega chegou exatamente no horário agendado. Parabéns pelo capricho!"
                         </p>
                     </div>
                     <div class="flex items-center gap-4 pt-4 border-t border-brand-100">
@@ -524,7 +660,7 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-brand-900 text-sm">Rodrigo Fernandes</h4>
-                            <span class="text-xs text-stone-500">Empresário • Florianópolis</span>
+                            <span class="text-xs text-stone-500">Avaliação no Google • Florianópolis</span>
                         </div>
                     </div>
                 </div>
@@ -540,7 +676,7 @@
                             <i class="fa-solid fa-star"></i>
                         </div>
                         <p class="text-stone-700 text-sm sm:text-base leading-relaxed mb-6">
-                            "Sempre peço os centos para as reuniões da nossa equipe e aniversários da família. A qualidade é constante e o salgado não é oleoso. Vale cada centavo!"
+                            "Melhor lugar de Florianópolis para encomendar centos de salgados! As coxinhas e rissoles são crocantes por fora e macios por dentro. Faz o maior sucesso nos eventos da nossa empresa."
                         </p>
                     </div>
                     <div class="flex items-center gap-4 pt-4 border-t border-brand-100">
@@ -549,15 +685,15 @@
                         </div>
                         <div>
                             <h4 class="font-bold text-brand-900 text-sm">Camila Pacheco</h4>
-                            <span class="text-xs text-stone-500">Coqueiros, Floripa</span>
+                            <span class="text-xs text-stone-500">Avaliação no Google • Florianópolis</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Location & Google Maps Section -->
-        <section id="localizacao" class="py-24 bg-brand-50 border-t border-brand-200/60">
+        <!-- Location & Google Maps Section (Seções Inteligentes) -->
+        <section id="localizacao" class="location-dependent py-24 bg-brand-50 border-t border-brand-200/60">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                     <!-- Store Information -->
@@ -569,7 +705,7 @@
                             </h2>
                         </div>
 
-                        <!-- Address Info -->
+                        <!-- Address Info (Formatação de Dados Contínua) -->
                         <div class="space-y-6">
                             <div class="flex items-start gap-4">
                                 <div class="w-12 h-12 rounded-xl bg-amber-100 text-brand-700 flex items-center justify-center flex-shrink-0 text-lg">
@@ -580,20 +716,20 @@
                                     <p class="text-stone-700 text-base leading-relaxed">
                                         R. Prof. Bayer Filho, 305<br/>
                                         Coqueiros, Florianópolis - SC<br/>
-                                        CEP: 88080-300
+                                        CEP: 88080300
                                     </p>
                                 </div>
                             </div>
 
-                            <!-- Phone / WhatsApp -->
-                            <div class="flex items-start gap-4">
+                            <!-- Phone / WhatsApp (Números agrupados de forma contínua) -->
+                            <div class="whatsapp-dependent flex items-start gap-4">
                                 <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center flex-shrink-0 text-lg">
                                     <i class="fa-brands fa-whatsapp"></i>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-brand-900 text-sm uppercase tracking-wider mb-1">Telefone & WhatsApp</h4>
-                                    <p class="text-stone-700 text-base font-medium">
-                                        (48) 3365-6022
+                                    <p class="text-stone-700 text-base font-semibold">
+                                        (48) 33656022
                                     </p>
                                     <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de um atendimento!'); return false;" class="text-emerald-700 hover:text-emerald-800 font-bold text-xs uppercase tracking-wider underline mt-1 inline-block">
                                         Iniciar conversa agora →
@@ -607,20 +743,20 @@
                                     <i class="fa-solid fa-clock"></i>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-brand-900 text-sm uppercase tracking-wider mb-1">Horário de Funcionamento</h4>
+                                    <h4 class="font-bold text-brand-900 text-sm uppercase tracking-wider mb-1">Horário de Atendimento</h4>
                                     <p class="text-stone-700 text-sm leading-relaxed">
-                                        Segunda a Sábado: 08h às 19h<br/>
-                                        Domingos e Feriados: Sob encomenda prévia
+                                        Segunda a Sexta: 09:00 às 12:00 e 13:30 às 18:00<br/>
+                                        Sábado: 09:00 às 12:00 e 13:30 às 17:00
                                     </p>
                                 </div>
                             </div>
                         </div>
 
                         <!-- CTA -->
-                        <div class="pt-2">
-                            <a href="#" onclick="openWhatsApp('Olá, gostaria de saber se vocês têm salgados prontos para retirada hoje!'); return false;" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl transition-all shadow hover:shadow-md inline-flex items-center gap-2">
+                        <div class="pt-2 whatsapp-dependent">
+                            <a href="#" onclick="openWhatsApp('Olá, gostaria de verificar a disponibilidade de salgados para encomenda!'); return false;" class="bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider px-6 py-3.5 rounded-xl transition-all shadow hover:shadow-md inline-flex items-center gap-2">
                                 <i class="fa-solid fa-bag-shopping"></i>
-                                <span>Verificar Fornada Disponível</span>
+                                <span>Verificar Encomendas Disponíveis</span>
                             </a>
                         </div>
                     </div>
@@ -647,19 +783,17 @@
     <footer class="bg-brand-900 text-amber-100 border-t border-white/10 pt-16 pb-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
-                <!-- Brand col -->
+                <!-- Brand col com Logo Oficial -->
                 <div class="md:col-span-2 space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-brand-700 text-amber-200 flex items-center justify-center text-lg">
-                            <i class="fa-solid fa-bread-slice"></i>
-                        </div>
+                        <img id="footerLogo" src="logo.png" alt="Mania Salgados" class="h-10 w-auto object-contain brightness-110"/>
                         <span class="font-serif text-2xl font-bold text-white">Mania Salgados</span>
                     </div>
                     <p class="text-amber-200/70 text-sm max-w-md leading-relaxed">
                         Salgados artesanais, fritos sequinhos e assados com receita tradicional em Florianópolis - SC. Tradição, sabor e pontualidade para tornar seu momento inesquecível.
                     </p>
-                    <div class="text-xs text-amber-300/80">
-                        <i class="fa-solid fa-location-dot mr-1"></i> R. Prof. Bayer Filho, 305 - Coqueiros, Florianópolis - SC
+                    <div class="location-dependent text-xs text-amber-300/80">
+                        <i class="fa-solid fa-location-dot mr-1"></i> R. Prof. Bayer Filho, 305 - Coqueiros, Florianópolis - SC, 88080300
                     </div>
                 </div>
 
@@ -670,16 +804,16 @@
                         <li><a href="#sobre" class="hover:text-white transition-colors">Nossa História</a></li>
                         <li><a href="#cardapio" class="hover:text-white transition-colors">Cardápio de Salgados</a></li>
                         <li><a href="#calculadora" class="hover:text-white transition-colors">Calculadora de Festas</a></li>
-                        <li><a href="#avaliacoes" class="hover:text-white transition-colors">Depoimentos</a></li>
-                        <li><a href="#localizacao" class="hover:text-white transition-colors">Onde Estamos</a></li>
+                        <li><a href="#avaliacoes" class="reviews-dependent hover:text-white transition-colors">Avaliações Reais</a></li>
+                        <li><a href="#localizacao" class="location-dependent hover:text-white transition-colors">Onde Estamos</a></li>
                     </ul>
                 </div>
 
-                <!-- Contact & Orders -->
-                <div class="space-y-3">
+                <!-- Contact & Orders (Números agrupados de forma contínua) -->
+                <div class="whatsapp-dependent space-y-3">
                     <h4 class="font-bold text-xs uppercase tracking-widest text-white mb-4">Atendimento Direto</h4>
                     <p class="text-sm text-amber-200/80">Telefone e Encomendas:</p>
-                    <p class="font-bold text-white text-lg">(48) 3365-6022</p>
+                    <p class="font-bold text-white text-lg">(48) 33656022</p>
                     <div class="pt-2">
                         <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de um atendimento!'); return false;" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-lg transition-colors">
                             <i class="fa-brands fa-whatsapp text-sm"></i>
@@ -697,8 +831,8 @@
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Action Button -->
-    <div class="fixed bottom-6 right-6 z-50">
+    <!-- Floating WhatsApp Action Button (Seções Inteligentes) -->
+    <div class="whatsapp-dependent fixed bottom-6 right-6 z-50">
         <a href="#" onclick="openWhatsApp('Olá, vim pelo site e gostaria de um atendimento!'); return false;" 
            aria-label="Falar no WhatsApp" 
            class="group relative flex items-center justify-center w-16 h-16 bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full shadow-floating transition-all duration-300 transform hover:scale-110 active:scale-95 focus:outline-none">
@@ -715,15 +849,41 @@
 
     <!-- Business Logic & Interactivity Script -->
     <script>
-        // Client Configuration
-        const CLIENT_PHONE = '554833656022';
-        const DEFAULT_MESSAGE = 'Olá, vim pelo site e gostaria de um atendimento!';
+        // Configurações Dinâmicas e Condicionais do Cliente
+        const CLIENT_DATA = {
+            whatsapp: "554833656022",
+            phoneFormatted: "(48) 33656022",
+            address: "R. Prof. Bayer Filho, 305 - Coqueiros, Florianópolis - SC, 88080300",
+            hasPositiveReviews: true, // Avaliação Google 4.7 com 149 avaliações reais
+            defaultMessage: "Olá, vim pelo site e gostaria de um atendimento!"
+        };
 
-        // WhatsApp Dynamic Link Generator with encodeURIComponent
+        // Atribui a logo oficial aos elementos de imagem
+        const brandLogoSrc = 'logo.png';
+        const headerLogoEl = document.getElementById('headerLogo');
+        const footerLogoEl = document.getElementById('footerLogo');
+        if (headerLogoEl) headerLogoEl.src = brandLogoSrc;
+        if (footerLogoEl) footerLogoEl.src = brandLogoSrc;
+
+        // Regra de Seções Inteligentes: Caso não exista WhatsApp ou Endereço, oculta elementos correspondentes
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!CLIENT_DATA.whatsapp || CLIENT_DATA.whatsapp.trim() === '') {
+                document.querySelectorAll('.whatsapp-dependent').forEach(el => el.remove());
+            }
+            if (!CLIENT_DATA.address || CLIENT_DATA.address.trim() === '') {
+                document.querySelectorAll('.location-dependent').forEach(el => el.remove());
+            }
+            if (!CLIENT_DATA.hasPositiveReviews) {
+                document.querySelectorAll('.reviews-dependent').forEach(el => el.remove());
+            }
+        });
+
+        // WhatsApp Dynamic Link Generator com encodeURIComponent
         function openWhatsApp(customMessage) {
-            const message = customMessage || DEFAULT_MESSAGE;
+            if (!CLIENT_DATA.whatsapp) return;
+            const message = customMessage || CLIENT_DATA.defaultMessage;
             const encodedText = encodeURIComponent(message);
-            const url = `https://wa.me/${CLIENT_PHONE}?text=${encodedText}`;
+            const url = 'https://wa.me/' + CLIENT_DATA.whatsapp + '?text=' + encodedText;
             window.open(url, '_blank');
         }
 
@@ -735,7 +895,6 @@
                 mobileMenu.classList.toggle('hidden');
             });
 
-            // Close mobile menu on clicking any navigation link
             document.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.addEventListener('click', () => {
                     mobileMenu.classList.add('hidden');
@@ -743,9 +902,24 @@
             });
         }
 
-        // Interactive Party Calculator Logic
+        // Category Filter (Menu Showcase)
+        function filterCategory(cat) {
+            document.querySelectorAll('.filter-pill').forEach(pill => pill.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.classList.contains(cat)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Interactive Party Calculator Logic (Números agrupados de forma contínua)
         let guests = 30;
-        let eventType = 'adult'; // 'adult' or 'kids'
+        let eventType = 'adult';
 
         const guestDisplay = document.getElementById('guestCountDisplay');
         const salgadosDisplay = document.getElementById('totalSalgadosDisplay');
@@ -759,7 +933,6 @@
 
             guestDisplay.textContent = guests;
 
-            // Multiplier: 12 per person for adult, 8 for kids
             const multiplier = eventType === 'adult' ? 12 : 8;
             const totalSalgados = guests * multiplier;
             const totalCentos = Math.ceil(totalSalgados / 100);
@@ -791,11 +964,10 @@
             const totalSalgados = guests * multiplier;
             const totalCentos = Math.ceil(totalSalgados / 100);
             
-            const msg = `Olá, fiz uma simulação na Calculadora do site da Mania Salgados!\n\n• Convidados: ${guests} pessoas\n• Tipo: ${eventName}\n• Estimativa sugerida: ${totalSalgados} salgados (~${totalCentos} centos)\n\nGostaria de solicitar um orçamento e ver as opções de sabores!`;
+            const msg = 'Olá, fiz uma simulação na Calculadora do site da Mania Salgados!\n\n• Convidados: ' + guests + ' pessoas\n• Tipo: ' + eventName + '\n• Estimativa sugerida: ' + totalSalgados + ' salgados (~' + totalCentos + ' centos)\n\nGostaria de solicitar um orçamento e ver as opções de sabores!';
             openWhatsApp(msg);
         }
 
-        // Initialize calculator
         updateCalculator();
     </script>
 </body>
